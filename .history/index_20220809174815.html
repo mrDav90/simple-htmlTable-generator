@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  type="text/javascript"  src="./table.js" ></script>
+   
+    
+    <script>
+        document.addEventListener("DOMContentLoaded" , ()=> {
+
+            function ninjavidTable (object) {
+                // table generator
+                console.log("------------------------");
+                console.log("Simple table generator");
+                console.log("------------------------");
+                // this , to return the maximum length of object for defining column count
+                function getColumnCount() {
+                    let initValue = (Object.keys(data[0])).length ;
+                    for (let i = 1; i < data.length; i++) {
+                        if ((Object.keys(data[i])).length > initValue ) {
+                            initValue = (Object.keys(data[i])).length ;
+                        }
+                    }
+                    return initValue;
+                }
+                let tableOptions = object.tableOptions;
+                let data = object.data ;
+                console.log(data);
+                // +1 for the column of tableOptions
+                let columnCount =  tableOptions === true  ? ((getColumnCount())+1) :  getColumnCount() ;
+                let rowCount = data.length;
+                
+                let table = document.createElement("table");
+                let tr = null;
+                    
+                // creation of table header
+
+                tr = document.createElement("tr");
+                tr.classList = "tr-header"
+                for (let i = 0; i < columnCount; i++) {
+                    th = document.createElement("th");
+                    div = document.createElement("div");
+                    div.style.width = "100%"
+                    div.style.display = "flex"
+                    div.style.justifyContent = "space-between"
+
+                    if (tableOptions) {
+                        if (i!== (columnCount-1)) {
+                            div1 = document.createElement("div");
+                            div1.textContent = "hello"
+                            div2 = document.createElement("div");
+                            div2.textContent = "search"
+                        }
+                        else{
+                            div.style.width = "4rem";
+                            div1 = document.createElement("div");
+                            div1.textContent = ""
+                            div2 = document.createElement("div");
+                            div2.textContent = ""
+                        }
+                    }
+                    else{
+                        div1 = document.createElement("div");
+                        div1.textContent = "hello"
+                        div2 = document.createElement("div");
+                        div2.textContent = "search"
+                    }                
+                    div.appendChild(div1);
+                    div.appendChild(div2);
+                    th.appendChild(div)
+                    tr.appendChild(th);
+                }           
+                table.appendChild(tr);
+
+           
+                // creation of table body
+                for (let i = 0; i < rowCount; i++) {
+                    tr = document.createElement("tr");
+
+                    for (const [key , value] of Object.entries(data[i]) ) {
+                        //console.log(`${key}: ${value}`);
+                        td = document.createElement("td");
+                        td.textContent = value ? value : "not specified"
+                
+                        tr.appendChild(td);
+                    }
+
+                    if ((tableOptions) && (i === (rowCount-1))) {
+                        let optionContent = document.createElement("div");
+                        optionContent.classList = "optionContent";
+
+                        let editItem = document.createElement("div");
+                        editItem.classList = "edit"
+                        editItem.textContent = "update"
+                        
+                        let deleteItem = document.createElement("div");
+                        deleteItem.classList = "delete"
+                        deleteItem.textContent = "delete"
+                        
+                        optionContent.appendChild(editItem);
+                        optionContent.appendChild(deleteItem);
+                        td.appendChild(optionContent);  
+                    }
+
+                    /*
+                    
+                        if (tableOptions === true) {
+                            if (i === (rowCount-1)) {
+                                    let optionContent = document.createElement("div");
+                                    optionContent.classList = "optionContent";
+
+                                    let editItem = document.createElement("div");
+                                    editItem.classList = "edit"
+                                    editItem.textContent = "update"
+                                    
+                                    let deleteItem = document.createElement("div");
+                                    deleteItem.classList = "delete"
+                                    deleteItem.textContent = "delete"
+                                    
+                                    optionContent.appendChild(editItem);
+                                    optionContent.appendChild(deleteItem);
+                                    td.appendChild(optionContent);  
+                            }
+                        }
+                    */
+                                
+                    table.appendChild(tr);
+                }
+                  
+                document.querySelector(".tableContainer").appendChild(table);
+              
+            }
+
+
+            const theData = [
+                {
+                    id : 1 ,
+                    name : "david" ,
+                    class : "Lic-i" ,
+                    age : 20 
+                } ,
+                {
+                    id : 2 ,
+                    name : "bart" ,
+                    class : "Lic-t" ,
+                    age : 21 
+                } ,
+                {
+                    id : 3 ,
+                    name : "sophie" ,
+                    class : "Lic-t" ,
+                    age : 20 
+                } ,
+                {
+                    id : 4,
+                    name : "anah" ,
+                    class : "Lic-i" ,
+                    age : 21
+                } ,
+            ]
+
+            ninjavidTable({
+                data : theData ,
+                tableOptions : true
+            });
+            
+
+        })
+
+    </script>
+
+<style>
+    *{
+        font-family: serif;
+    }
+    table,tr,th,td{
+        border-collapse: collapse;
+    }
+    table{
+        width: 100%;
+    }
+    tr{
+        border-bottom: 1px solid  rgba(220, 220, 220, 0.5);
+    }
+    th{
+        height: 6vh ;
+        width: auto;
+        font-weight: normal;
+        padding: 1%;
+        background: #f6f6f7;
+    }
+    td{
+        height: 9vh;
+        padding: 1%;
+    }
+    tr:not(.tr-header):hover { 
+        background-color: rgba(220, 220, 220, 0.5); 
+        transition: all 0.2s;
+    } 
+
+    .optionContent{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .edit{
+        color: #0097e6;
+        cursor: pointer;
+    }
+
+    .delete{
+        color: #e84118;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+    <div class="tableContainer" >
+        
+    </div>
+</body>
+</html>
+

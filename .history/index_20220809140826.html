@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  type="text/javascript"  src="./table.js" ></script>
+    <script>
+        document.addEventListener("DOMContentLoaded" , ()=> {
+
+            function ninjavidTable (object) {
+                // table generator
+                console.log("------------------------");
+                console.log("Simple table generator");
+                console.log("------------------------");
+
+                let rowCount = object.rowCount;
+                let columnCount = object.columnCount;
+                let data = object.data ;
+                console.log(data);
+
+                
+
+                let table = document.createElement("table");
+                let tr = null;
+
+                    
+                // creation of table header
+
+                tr = document.createElement("tr");
+                tr.classList = "tr-header"
+                for (let i = 0; i < columnCount; i++) {
+                    th = document.createElement("th");
+                    div = document.createElement("div");
+                    div.style.width = "100%"
+                    div.style.display = "flex"
+                    div.style.justifyContent = "space-between"
+
+                    div1 = document.createElement("div");
+                    div1.textContent = "hello"
+
+                    div2 = document.createElement("div");
+                    div2.textContent = "search"
+
+                    div.appendChild(div1);
+                    div.appendChild(div2);
+
+
+                    th.appendChild(div)
+                    tr.appendChild(th);
+                }           
+                table.appendChild(tr);
+
+
+                // creation of table body
+                for (let i = 0; i < rowCount; i++) {
+                        tr = document.createElement("tr");
+                        
+                        for (let j = 0; j < columnCount; j++) {
+                            td = document.createElement("td");
+                            td.textContent = "hello"
+                            tr.appendChild(td);
+                        }           
+                        table.appendChild(tr);
+                }
+            
+            
+                document.querySelector(".tableContainer").appendChild(table);
+              
+            }
+
+
+            const theData = [
+                {
+                    id : 1 ,
+                    name : "david" ,
+                    class : "Lic-i" ,
+                    age : 20 
+                } ,
+                {
+                    id : 2 ,
+                    name : "bart" ,
+                    class : "Lic-t" ,
+                    age : 21 
+                } ,
+            ]
+
+            ninjavidTable({
+                rowCount : theData.length ,
+                columnCount : theData[0].length ,
+                data : theData
+
+            });
+
+        })
+
+    </script>
+
+<style>
+    *{
+        font-family: serif;
+    }
+    table,tr,th,td{
+        border-collapse: collapse;
+    }
+    table{
+        width: 100%;
+    }
+
+    tr{
+        border-bottom: 1px solid  rgba(220, 220, 220, 0.5);
+    }
+
+    th{
+        height: 6vh ;
+        width: auto;
+        font-weight: normal;
+        padding: 1%;
+        background: #f6f6f7;
+    }
+
+    td{
+        height: 9vh;
+        padding: 1%;
+    }
+
+ 
+
+    tr:not(.tr-header):hover { 
+        background-color: rgba(220, 220, 220, 0.5); 
+        transition: all 0.2s;
+    } 
+
+</style>
+</head>
+<body>
+    <div class="tableContainer" >
+        
+    </div>
+</body>
+</html>
+

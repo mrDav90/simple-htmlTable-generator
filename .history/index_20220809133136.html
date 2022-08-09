@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  type="text/javascript"  src="./table.js" ></script>
+    <script>
+        document.addEventListener("DOMContentLoaded" , ()=> {
+
+        // table generator
+        console.log("------------------------");
+        console.log("Simple table generator");
+        console.log("------------------------");
+
+        
+
+        let table = document.createElement("table");
+        let tr = null;
+
+            
+        // creation of table header
+
+        tr = document.createElement("tr");
+        tr.classList = "tr-header"
+        for (let j = 0; j < 4; j++) {
+            th = document.createElement("th");
+            div = document.createElement("div");
+            div.style.width = "100%"
+            div.style.display = "flex"
+            div.style.justifyContent = "space-between"
+
+            div1 = document.createElement("div");
+            div1.textContent = "hello"
+
+            div2 = document.createElement("div");
+            div2.textContent = "search"
+
+            div.appendChild(div1);
+            div.appendChild(div2);
+
+
+            th.appendChild(div)
+            tr.appendChild(th);
+        }           
+        table.appendChild(tr);
+
+
+        // creation of table body
+        for (let i = 0; i < 4; i++) {
+                tr = document.createElement("tr");
+                
+                for (let j = 0; j < 4; j++) {
+                    td = document.createElement("td");
+                    td.textContent = "hello"
+                    tr.appendChild(td);
+                }           
+                table.appendChild(tr);
+        }
+       
+     
+      
+      
+
+        document.querySelector(".tableContainer").appendChild(table);
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="tableContainer" >
+        
+    </div>
+</body>
+</html>
+
+<style>
+    table,tr,th,td{
+        border-collapse: collapse;
+    }
+    table{
+        width: 100%;
+    }
+
+    th{
+        height: 6vh ;
+        width: auto;
+        font-weight: normal;
+        padding: 1%;
+        background: #dcdde1;
+    }
+
+    td{
+        height: 9vh;
+        padding: 1%;
+    }
+
+ 
+
+    tr:not(.tr-header):hover { 
+        background-color: rgba(184, 184, 184, 0.5); 
+    } 
+
+</style>

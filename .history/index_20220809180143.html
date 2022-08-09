@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  type="text/javascript"  src="./table.js" ></script>
+<style>
+    *{
+        font-family: serif;
+    }
+    table,tr,th,td{
+        border-collapse: collapse;
+    }
+    table{
+        width: 100%;
+    }
+    tr{
+        border-bottom: 1px solid  rgba(220, 220, 220, 0.5);
+    }
+    th{
+        height: 6vh ;
+        width: auto;
+        font-weight: normal;
+        padding: 1%;
+        background: #f6f6f7;
+    }
+    td{
+        height: 9vh;
+        padding: 1%;
+    }
+    tr:not(.tr-header):hover { 
+        background-color: rgba(220, 220, 220, 0.5); 
+        transition: all 0.2s;
+    } 
+
+    .optionContent{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .edit{
+        color: #0097e6;
+        cursor: pointer;
+    }
+
+    .delete{
+        color: #e84118;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+    <div class="tableContainer" >
+        
+    </div>
+</body>
+</html>
+
